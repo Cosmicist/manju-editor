@@ -1,0 +1,188 @@
+@charset 'UTF-8';
+
+/**
+ * Ligature Symbols Font copyright Kazuyuki Motoyama (kudakurage)
+ * http://kudakurage.com/ligature_symbols/
+ * 
+ * Licensed under the SIL Open Font License:
+ * http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
+ */
+@font-face {
+    font-family: 'LigatureSymbols';
+    src: url('../ligature-symbols-font/LigatureSymbols-2.07.eot');
+    src: url('../ligature-symbols-font/LigatureSymbols-2.07.eot?#iefix') format('embedded-opentype'),
+         url('../ligature-symbols-font/LigatureSymbols-2.07.woff') format('woff'),
+         url('../ligature-symbols-font/LigatureSymbols-2.07.ttf') format('truetype'),
+         url('../ligature-symbols-font/LigatureSymbols-2.07.svg#LigatureSymbols') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.manju-wrap {
+    background: #f1f1f1;
+    margin: 10px 0 20px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+}
+
+.manju-wrap * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.manju-wrap .manju-toolbar-wrap {
+    border-bottom: 1px solid #ccc;
+    padding: 3px;
+}
+
+.manju-wrap .manju-toolbar {
+    display: inline-block;
+    padding: 3px;
+}
+
+.manju-wrap .manju-toolbar-button {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.manju-wrap .manju-toolbar-button button {
+    border: 1px solid transparent;
+    background: transparent;
+    border-radius: 2px;
+    width: 24px;
+    height: 24px;
+    font-size: 18px;
+}
+
+.manju-wrap .manju-toolbar-button button:hover,.manju-wrap .manju-toolbar-button button:focus {
+    border: 1px solid #ddd;
+
+    -webkit-box-shadow: 0 1px 0 #fff inset;
+    box-shadow: 0 1px 0 #fff inset;
+    outline: none;
+}
+
+.manju-wrap .manju-toolbar-button button::-moz-focus-inner {
+    border: 0px;
+}
+
+.manju-wrap .manju-toolbar-button button:active,.manju-wrap .manju-toolbar-button.active button {
+    background: #ddd;
+    border-color: #aaa;
+
+    -webkit-box-shadow: 1px 1px 2px #ccc inset;
+    box-shadow: 1px 1px 2px #ccc inset;
+}
+
+.manju-wrap .manju-toolbar-button select {
+    margin: 0 3px;
+}
+
+.manju-wrap .manju-toolbar-button .flip {
+    display: block;
+
+    -webkit-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+}
+
+.manju-wrap .editable-area, .manju-wrap .manju-source {
+    background: #fff;
+    width: 100%;
+    min-height: 150px;
+    max-height: 450px;
+    overflow: auto;
+    padding: 10px;
+    border: 1px solid #fff;
+    margin: 0;
+}
+
+.manju-wrap .editable-area:focus,.manju-wrap .manju-source:focus {
+    outline: none;
+
+    -webkit-box-shadow: 0 0 2px lightblue, 0 0 8px lightblue;
+    box-shadow: 0 0 2px lightblue, 0 0 8px lightblue;
+}
+
+.manju-wrap .manju-source {
+    border: none;
+    display: none;
+    -webkit-resize: vertical;
+    -moz-resize: vertical;
+    resize: vertical;
+}
+
+/* Pickers */
+.manju-wrap .forecolor-picker {
+    display: none;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+
+    -webkit-box-shadow: 0 0 5px #ccc;
+    box-shadow: 0 0 5px #ccc;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.manju-wrap .forecolor-picker table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.manju-wrap .forecolor-picker tr.grays td,.manju-wrap .forecolor-picker tr.misc td {
+    padding-bottom: 5px;
+}
+
+.manju-wrap .forecolor-picker .item {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #fff;
+    cursor: default;
+}
+
+.manju-wrap .forecolor-picker .item span {
+    display: none;
+    text-shadow: 0px 0px 1px #fff, 0px 0px 1px #fff;
+    font-size: 10px;
+    text-align: center;
+}
+
+.manju-wrap .forecolor-picker .item.active span {
+    display: block;
+}
+
+.manju-wrap .forecolor-picker .item:hover {
+    border-color: #000;
+}
+
+/* Symbols Font */
+
+.symbol,
+.manju-wrap .manju-toolbar-button button {
+    font-family: 'LigatureSymbols';
+    -webkit-text-rendering: optimizeLegibility;
+    -moz-text-rendering: optimizeLegibility;
+    -ms-text-rendering: optimizeLegibility;
+    -o-text-rendering: optimizeLegibility;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -ms-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    -webkit-font-feature-settings: "liga" 1, "dlig" 1;
+    -moz-font-feature-settings: "liga=1, dlig=1";
+    -ms-font-feature-settings: "liga" 1, "dlig" 1;
+    -o-font-feature-settings: "liga" 1, "dlig" 1;
+    font-feature-settings: "liga" 1, "dlig" 1;
+}

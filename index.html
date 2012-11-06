@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/jquery.editor.css">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700,300|Ubuntu+Mono' rel='stylesheet' type='text/css'>
+    <style>
+    body { font-family: Ubuntu, sans-serif; font-weight: lighter; }
+    h1 { font-weight: normal; }
+    .editable { border: 1px solid #ccc; margin-bottom: 1em; }
+    </style>
+</head>
+<body>
+
+<h1>Manju Editor</h1>
+
+<form>
+    <p>
+        <label>Editor from textarea</label><br>
+        <textarea class="editor"><h1>Example</h1><p>Lorem ipsum dolor sit amet.</p></textarea>
+    </p>
+
+    <p>
+        <label>Editor from div</label><br>
+    </p>
+
+    <div class="editable">
+        <img src="manju.png" width="250px">
+        <h1>Another Example</h1>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+    <button type="button" id="make-editable">Edit the example above</button>
+    
+    <p>
+        <input type="submit">
+    </p>
+</form>
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="js/jquery.manju.js"></script>
+<script>
+    $('.editor').manju();
+    $('#make-editable').click(function()
+    {
+        $('.editable').manju();
+    });
+</script>
+</body>
+</html>
