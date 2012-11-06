@@ -26,29 +26,70 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         defaults: {
             toolbars: {
                 font: [
-                    { title:'Font', class:'manju-font', cmd: 'fontname', values: [
-                        'Sans-serif',
-                        'Serif',
-                        'Arial',
-                        'Helvetica',
-                        'Courier New',
-                        'Garamond',
-                        'Georgia',
-                        'Tahoma',
-                        'Trebuchet MS',
-                        'Verdana'
-                    ] },
-                    { title:'Font color', html:'color', class:'manju-color picker', cmd: {
+                    { title: 'Font', class:'manju-font dropdown-button', html:'<small>Choose a font</small>', cmd: {
+                        command: 'fontname',
+                        callback: function( btn )
+                        {
+                            var api = this,
+                                pos = btn.offset(),
+                                dropdown = this.ui.wrap.find('#font-dropdown');
+
+                            if( ! dropdown.length )
+                            {
+                                dropdown = $('<ul id="font-dropdown" class="dropdown-list">').appendTo( this.ui.wrap );
+
+                                var lis = '';
+
+                                for( var i in $.manju.fonts )
+                                {
+                                    var f = $.manju.fonts[i];
+
+                                    lis += '<li data-value="'+f+'"><span style="font-family: '+f+'">'+f+'<span class="check symbol">check</span></span></li>';
+                                }
+                                dropdown.html( lis ).find('li').click(function()
+                                {
+                                    // Apply font to selection
+                                    api.cmd( 'fontname', $(this).data('value') );
+
+                                    // Hide the dropdown
+                                    dropdown.fadeOut('fast');
+                                });
+
+                                this.ui.wrap.bind('click.font-dropdown', function(e)
+                                {
+                                    if( ! $(e.target).parent().hasClass('manju-font') )
+                                    {
+                                        dropdown.fadeOut('fast');
+                                    }
+                                });
+
+                                // Run a check for all the commands to mark the
+                                // correct item as selected
+                                this.checkCommands();
+                            }
+
+                            dropdown.css({
+                                top: pos.top + btn.outerHeight(),
+                                left: pos.left
+                            });
+
+                            if( dropdown.is(':visible') )
+                                dropdown.fadeOut('fast');
+                            else
+                                dropdown.fadeIn('fast');
+                        }
+                    } },
+                    { title:'Font color', html:'color', class:'manju-color picker-button', cmd: {
                         command: 'forecolor',
                         callback: function( btn )
                         {
                             var api = this,
                                 pos = btn.offset(),
-                                picker = this.ui.wrap.find('.forecolor-picker');
+                                picker = this.ui.wrap.find('#forecolor-picker');
 
                             if( ! picker.length )
                             {
-                                picker = $('<div class="forecolor-picker">').appendTo( this.ui.wrap );
+                                picker = $('<div id="forecolor-picker" class="picker">').appendTo( this.ui.wrap );
 
                                 // Create a table
                                 var t = '<table class="items symbol">';
@@ -117,7 +158,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         command: 'createlink',
                         callback: function() {
                             var url = prompt('Enter URL (leave blank to unlink)', '');
-                            console.log( this.ui );
 
                             if( url == '' )
                                 this.cmd('unlink');
@@ -186,7 +226,19 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 '102, 0, 0', '120, 63, 4', '127, 96, 0', '39, 78, 19',
                 '12, 52, 61', '7, 55, 99', '32, 18, 77', '76, 17, 48'
             ]
-        }
+        },
+        fonts: [
+            'Sans-serif',
+            'Serif',
+            'Arial',
+            'Helvetica',
+            'Courier New',
+            'Garamond',
+            'Georgia',
+            'Tahoma',
+            'Trebuchet MS',
+            'Verdana'
+        ]
     }
 
     var Manju = function( elem, options )
@@ -334,15 +386,28 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         if( cmdval == val )
                             $(this).addClass('active');
                     }
-                    else if( $(this).hasClass('picker') )
+                    else if( $(this).hasClass('picker-button') || $(this).hasClass('dropdown-button') )
                     {
-                        var val = document.queryCommandValue( cmd ),
-                            picker = $('.'+cmd+'-picker');
+                        var val = document.queryCommandValue( cmd );
 
-                        picker.find('.item').removeClass('active');
+                        if( $(this).hasClass('picker-button') )
+                        {
+                            var picker = $('.picker');
 
-                        if( picker.length )
-                            picker.find('.item[data-value="'+val+'"]').addClass('active');
+                            picker.find('.item').removeClass('active');
+
+                            if( picker.length )
+                                picker.find('.item[data-value="'+val+'"]').addClass('active');
+                        }
+                        else if( $(this).hasClass('dropdown-button') )
+                        {
+                            var dropdown = $('.dropdown-list');
+
+                            dropdown.find('li:not(.separator)').removeClass('active');
+
+                            if( dropdown.length )
+                                dropdown.find('li[data-value="'+val+'"]').addClass('active');
+                        }
                     }
                     else
                     {

@@ -74,9 +74,19 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     border: 1px solid transparent;
     background: transparent;
     border-radius: 2px;
-    width: 24px;
+    min-width: 24px;
     height: 24px;
     font-size: 18px;
+    white-space: nowrap;
+}
+.manju-wrap .manju-toolbar-button button small {
+    display: inline-block;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: Helvetica, Arial, sans-serif;
+    vertical-align: middle;
 }
 
 .manju-wrap .manju-toolbar-button button:hover,.manju-wrap .manju-toolbar-button button:focus {
@@ -140,8 +150,74 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     resize: vertical;
 }
 
-/* Pickers */
-.manju-wrap .forecolor-picker {
+
+/* Dropdowns & Pickers */
+
+.manju-wrap .manju-toolbar-button button.picker-button:after,
+.manju-wrap .manju-toolbar-button button.dropdown-button:after {
+    display: inline-block;
+    content: 'down';
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+/* Dropdown */
+
+.manju-wrap ul.dropdown-list {
+    display: none;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ccc;
+    margin: 0;
+    padding: 5px;
+    list-style: none;
+    line-height: 25px;
+
+
+    -webkit-box-shadow: 0 0 5px #ccc;
+    box-shadow: 0 0 5px #ccc;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.manju-wrap ul.dropdown-list:before {
+    display: block;
+    position: absolute;
+    content: '';
+    border: 6px solid transparent;
+    border-bottom-color: #fff;
+    top: -12px;
+    left: 50%;
+    margin-left: -6px;
+}
+
+.manju-wrap ul.dropdown-list li > span {
+    display: block;
+    padding: 2px 10px;
+    cursor: default;
+}
+.manju-wrap ul.dropdown-list li:hover > span {
+    background: #eee;
+}
+.manju-wrap ul.dropdown-list li.active > span {
+    background: #D5E9FB;
+}
+
+.manju-wrap ul.dropdown-list li > span .check {
+    display: none;
+    margin-left: 10px;
+}
+.manju-wrap ul.dropdown-list li.active > span .check {
+    display: inline-block;
+
+}
+
+
+/* Picker */
+
+.manju-wrap .picker {
     display: none;
     position: absolute;
     background: #fff;
@@ -157,34 +233,34 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     user-select: none;
 }
 
-.manju-wrap .forecolor-picker table {
+.manju-wrap .picker table {
     border-spacing: 0;
     border-collapse: collapse;
 }
 
-.manju-wrap .forecolor-picker tr.grays td,.manju-wrap .forecolor-picker tr.misc td {
+.manju-wrap .picker tr.grays td, .manju-wrap .picker tr.misc td {
     padding-bottom: 5px;
 }
 
-.manju-wrap .forecolor-picker .item {
+.manju-wrap .picker .item {
     width: 16px;
     height: 16px;
     border: 1px solid #fff;
     cursor: default;
 }
 
-.manju-wrap .forecolor-picker .item span {
+.manju-wrap .picker .item span {
     display: none;
     text-shadow: 0px 0px 1px #fff, 0px 0px 1px #fff;
     font-size: 10px;
     text-align: center;
 }
 
-.manju-wrap .forecolor-picker .item.active span {
+.manju-wrap .picker .item.active span {
     display: block;
 }
 
-.manju-wrap .forecolor-picker .item:hover {
+.manju-wrap .picker .item:hover {
     border-color: #000;
 }
 
