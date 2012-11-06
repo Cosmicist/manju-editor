@@ -169,7 +169,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                 this.cmd('createlink', url);
                             }
                         }
-                    } }
+                    } },
+                    { title: 'Insert image', html:'image', class:'manju-image', cmd: function()
+                        {
+                            var url = prompt('Enter image URL', '');
+
+                            if( url.match('^\/\/') )
+                                url = 'http:'+url;
+
+                            this.cmd('insertimage', url);
+                        }
+                    }
                 ],
                 lists: [
                     { title:'Unordered list', html:'list', class:'manju-list', cmd: 'insertUnorderedList' },
