@@ -9,10 +9,10 @@ edit content, and, of course, it also allows source code viewing/editing.
 
 Include the script and styles, and don't forget jQuery!
 ```html
-<link rel="stylesheet" href="css/jquery.editor.css">
+<link rel="stylesheet" href="css/jquery.manju.css">
 
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<script src="js/jquery.editor.js"></script>
+<script src="js/jquery.manju.js"></script>
 ```
 
 _It is recommended to include the scripts just before closing the body tag._
