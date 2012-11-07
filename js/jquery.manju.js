@@ -461,23 +461,23 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         function _sourceToggle()
         {
-            if( $ta.is(':visible') )
+            switch( _getCurrentMode() )
             {
-                this.cmdstatus = true;
-                $ta.hide();
-                $e.show().focus();
-                _syncEditableArea();
-                $tbwrap.removeClass('disabled');
-                _enableButtons();
-            }
-            else
-            {
-                this.cmdstatus = false;
-                $ta.show().height( $e.height() ).focus();
-                $e.hide();
-                _syncTextarea();
-                $tbwrap.addClass('disabled');
-                _disableButtons();
+                case 'design':
+                    _syncTextarea();
+                    _disableButtons();
+                    $ta.show().height( $e.height() ).focus();
+                    $e.hide();
+                    $tbwrap.addClass('disabled');
+                break;
+
+                case 'source':
+                    _syncEditableArea();
+                    _enableButtons();
+                    $ta.hide();
+                    $e.show().focus();
+                    $tbwrap.removeClass('disabled');
+                break;
             }
         }
         this.sourceToggle = _sourceToggle;
