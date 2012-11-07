@@ -501,6 +501,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     $.fn.manju = function( options )
     {
+        var api = $(this).data('{{manju}}');
+
+        if( api && api instanceof Manju )
+            return api;
+
         return $(this).each(function()
         {
             $(this).data('{{manju}}', new Manju(this, options) );
