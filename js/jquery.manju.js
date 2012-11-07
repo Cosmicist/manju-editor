@@ -482,6 +482,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         }
         this.sourceToggle = _sourceToggle;
 
+        function _getCurrentMode()
+        {
+            return $ta.is(':visible') ? 'source' : 'design';
+        }
+        this.getCurrentMode = _getCurrentMode;
+
         function _enableButtons()
         {
             $tbwrap.find(':input').attr('disabled', false);
