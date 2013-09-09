@@ -27,6 +27,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 .manju-wrap {
+    position: relative;
     background: #f5f5f5;
     margin: 10px 0 20px;
     border: 1px solid #ddd;
@@ -40,6 +41,30 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     -ms-box-sizing: border-box;
     box-sizing: border-box;
 }
+.manju-wrap .manju-fullscreen {
+    display: none;
+}
+.manju-wrap:hover .manju-fullscreen {
+    display: block;
+}
+.manju-wrap .manju-fullscreen:after {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    content: '\f065';
+    font-family: "FontAwesome";
+    background: rgba(0,0,0,0.1);
+    cursor: pointer;
+    padding: 5px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+.manju-wrap:-webkit-full-screen .manju-fullscreen:after { content: '\f066'; }
+.manju-wrap:-moz-full-screen .manju-fullscreen:after { content: '\f066'; }
+.manju-wrap:-ms-full-screen .manju-fullscreen:after { content: '\f066'; }
+.manju-wrap:-o-full-screen .manju-fullscreen:after { content: '\f066'; }
+.manju-wrap:full-screen .manju-fullscreen:after { content: '\f066'; }
 
 /* Toolbars */
 .manju-wrap .manju-toolbar-wrap {
@@ -79,6 +104,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
     padding: 2px 4px;
 }
+.manju-wrap.big-buttons .manju-toolbar-button button {
+    font-size: 1em;
+}
+.manju-wrap.bigger-buttons .manju-toolbar-button button {
+    font-size: 1.1em;
+}
 .manju-wrap .manju-toolbar-button button:hover,.manju-wrap .manju-toolbar-button button:focus {
     border: 1px solid #ddd;
     -webkit-box-shadow: 0 1px 0 #fff inset;
@@ -98,12 +129,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     box-shadow: 1px 1px 2px #ccc inset;
 }
 
-/* Source view */
+/* HTML/Source views */
 .manju-wrap .editable-area, .manju-wrap .manju-source {
     background: #fff;
     width: 100%;
     min-height: 150px;
-    max-height: 450px;
+    height: 100%;
     overflow: auto;
     padding: 10px;
     border: 1px solid #fff;
@@ -124,6 +155,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     -o-resize: vertical;
     resize: vertical;
 }
+:-webkit-full-screen { width: 100%; height: 100%; }
+.manju-wrap:-webkit-full-screen { margin: 0; }
+
+.manju-wrap:-webkit-full-screen .manju-toolbar-wrap, .manju-wrap:-webkit-full-screen .editable-area,.manju-wrap:-webkit-full-screen .manju-source { padding-left: 10%; padding-right: 10%; }
+.manju-wrap:-moz-full-screen .manju-toolbar-wrap, .manju-wrap:-moz-full-screen .editable-area, .manju-wrap:-moz-full-screen .manju-source { padding-left: 10%; padding-right: 10%; }
+.manju-wrap:-ms-full-screen .manju-toolbar-wrap, .manju-wrap:-ms-full-screen .editable-area, .manju-wrap:-moz-full-screen .manju-source { padding-left: 10%; padding-right: 10%; }
+.manju-wrap:-o-full-screen .manju-toolbar-wrap, .manju-wrap:-o-full-screen .editable-area, .manju-wrap:-moz-full-screen .manju-source { padding-left: 10%; padding-right: 10%; }
+.manju-wrap:full-screen .manju-toolbar-wrap, .manju-wrap:full-screen .editable-area, .manju-wrap:-moz-full-screen .manju-source { padding-left: 10%; padding-right: 10%; }
 
 /* Dropdowns & Pickers */
 .manju-wrap .manju-toolbar-button button.picker-button:after,
@@ -195,6 +234,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+.manju-wrap .picker:before {
+    display: block;
+    position: absolute;
+    content: '';
+    border: 6px solid transparent;
+    border-bottom-color: #fff;
+    top: -12px;
+    left: 12px;
+    margin-left: -6px;
 }
 .manju-wrap .picker table {
     border-spacing: 0;

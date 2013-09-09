@@ -69,8 +69,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                             }
 
                             dropdown.css({
-                                top: pos.top + btn.outerHeight(),
-                                left: pos.left
+                                top: 10 + btn.outerHeight(),
+                                left: pos.left - this.ui.wrap.offset().left - 1
                             });
 
                             if( dropdown.is(':visible') )
@@ -130,8 +130,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                             } // End picker creation
 
                             picker.css({
-                                top: pos.top + btn.outerHeight(),
-                                left: pos.left
+                                top: 10 + btn.outerHeight(),
+                                left: pos.left - this.ui.wrap.offset().left - 1
                             });
 
                             if( picker.is(':visible') )
@@ -261,7 +261,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
         var $wrap = $('<div class="manju-wrap">').insertBefore( elem ),
             $tbwrap = $('<div class="manju-toolbar-wrap">'),
-            $ta, $e;
+            $ta, $e
+            $fs = $('<div class="manju-fullscreen"></div>').click(function() { _fullscreen(); });
 
         if( elem.tagName == 'TEXTAREA' )
         {
@@ -354,13 +355,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             $tbwrap.append( $tbar );
         });
 
+        // Append fullscreen button
+        $fs.appendTo($wrap);
+
         // Public vars
         this.config = o;
         this.ui = {
             wrap: $wrap,
             toolbar: $tbwrap,
             textarea: $ta,
-            editarea: $e
+            editarea: $e,
+            fs: $fs
         };
 
         // Keep areas sync'ed when sending the form
@@ -435,6 +440,34 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             });
         }
         this.checkCommands = _checkCommands;
+
+        function _fullscreen() {
+            var wrap = $wrap.get(0);
+
+            if (!isFullscreen()) {
+                if (wrap.requestFullScreen) {
+                    wrap.requestFullScreen();
+                } else if (wrap.mozRequestFullScreen) {
+                    wrap.mozRequestFullScreen();
+                } else if (wrap.webkitRequestFullScreen) {
+                    wrap.webkitRequestFullScreen();
+                }
+            } else {
+                if (document.cancelFullScreen) {
+                    document.cancelFullScreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen();
+                }
+            }
+        }
+
+        function isFullscreen () {
+            var fs = document.fullScreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
+            console.log(fs, document.webkitFullScreenElement);
+            return $wrap.get(0) == fs;
+        }
 
 
         /* API */
