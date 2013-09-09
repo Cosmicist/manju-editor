@@ -283,6 +283,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         
         $.each( o.toolbars, function( name, buttons )
         {
+            if (typeof o.activeToolbars != 'undefined' && $.inArray(name, o.activeToolbars) == -1) {
+                return;
+            }
+
             // Add a toolbar div
             var $tbar = $('<div class="manju-toolbar manju-toolbar-'+name+'">'), content;
             for( var i in buttons )
