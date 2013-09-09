@@ -42,10 +42,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     box-sizing: border-box;
 }
 .manju-wrap .manju-fullscreen {
-    display: none;
+    opacity: 0;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
 }
 .manju-wrap:hover .manju-fullscreen {
-    display: block;
+    opacity: 1;
 }
 .manju-wrap .manju-fullscreen:after {
     position: absolute;
@@ -53,12 +58,20 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     right: 10px;
     content: '\f065';
     font-family: "FontAwesome";
-    background: rgba(0,0,0,0.1);
+    background: rgba(0,0,0,0.15);
     cursor: pointer;
     padding: 5px;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+}
+.manju-wrap .manju-fullscreen:hover:after {
+    background: rgba(0,0,0,0.1);
 }
 .manju-wrap:-webkit-full-screen .manju-fullscreen:after { content: '\f066'; }
 .manju-wrap:-moz-full-screen .manju-fullscreen:after { content: '\f066'; }
@@ -103,6 +116,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     white-space: nowrap;
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
     padding: 2px 4px;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
 }
 .manju-wrap.big-buttons .manju-toolbar-button button {
     font-size: 1em;
