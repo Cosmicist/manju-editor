@@ -186,7 +186,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     { title:'Ordered list', html:'<i class="icon-list-ol"></i>', class:'manju-list', cmd: 'insertOrderedList' }
                 ],
                 indentation: [
-                    { title:'Outdent', html:'<i class="icon-indent-left"></i>', class:'manju-list', cmd: 'outdent' },
+                    { title:'Quote', html:'<i class="icon-quote-left"></i>', class:'manju-list', cmd: 'formatblock', value: 'blockquote' },
+                    { title:'Outdent / Un-quote', html:'<i class="icon-indent-left"></i>', class:'manju-list', cmd: 'outdent' },
                     { title:'Indent', html:'<i class="icon-indent-right"></i>', class:'manju-list', cmd: 'indent' }
                 ],
                 clipboard: [
@@ -325,7 +326,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 {
                     $b.html('<button type="button" class="'+b.class+'">'+ ( b.html || '&nbsp;' ) +'</button>');
 
-                    $b.click( (function( cmd )
+                    $b.click( (function( cmd, value )
                     {
                         return function(e)
                         {
@@ -340,12 +341,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                 return;
                             }
 
-                            if( ! $.isArray( cmd ) )
-                                cmd = [cmd];
+                            if( ! $.isArray( cmd ) ) {
+                                console.log(value);
+                                cmd = [cmd, value];
+                            }
 
                             _cmd.apply( _this, cmd );
                         }
-                    })( b.cmd ) );
+                    })( b.cmd, b.value || null ) );
                 }
             }
             $tbwrap.append( $tbar );
