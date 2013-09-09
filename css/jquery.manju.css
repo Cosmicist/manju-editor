@@ -116,6 +116,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     white-space: nowrap;
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
     padding: 2px 4px;
+    color: #333;
     -webkit-transition: all 0.2s;
     -moz-transition: all 0.2s;
     -ms-transition: all 0.2s;
