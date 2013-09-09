@@ -26,7 +26,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         defaults: {
             toolbars: {
                 font: [
-                    { title: 'Font', class:'manju-font dropdown-button', html:'<small>Choose a font</small>', cmd: {
+                    { title: 'Font', class:'manju-font dropdown-button', html:'Choose a font', cmd: {
                         command: 'fontname',
                         callback: function( btn )
                         {
@@ -44,7 +44,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                 {
                                     var f = $.manju.fonts[i];
 
-                                    lis += '<li data-value="'+f+'"><span style="font-family: '+f+'">'+f+'<span class="check symbol">check</span></span></li>';
+                                    lis += '<li data-value="'+f+'"><span style="font-family: '+f+'">'+f+'<i class="icon-ok check"></i></span></li>';
                                 }
                                 dropdown.html( lis ).find('li').click(function()
                                 {
@@ -79,7 +79,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                 dropdown.fadeIn('fast');
                         }
                     } },
-                    { title:'Font color', html:'color', class:'manju-color picker-button', cmd: {
+                    { title:'Font color', html:'Color', class:'manju-color picker-button', cmd: {
                         command: 'forecolor',
                         callback: function( btn )
                         {
@@ -92,7 +92,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                 picker = $('<div id="forecolor-picker" class="picker">').appendTo( this.ui.wrap );
 
                                 // Create a table
-                                var t = '<table class="items symbol">';
+                                var t = '<table class="items">';
 
                                 for( var group in $.manju.colors )
                                 {
@@ -102,7 +102,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                     for( var i in line )
                                     {
                                         var rgb = line[i];
-                                        t += '<td><div class="item" data-value="rgb('+rgb+')" style="background: rgb('+rgb+');" title="RGB ('+rgb+')"><span>check</span></div></td>';
+                                        t += '<td><div class="item" data-value="rgb('+rgb+')" style="background: rgb('+rgb+');" title="RGB ('+rgb+')"><i class="icon-ok"></i></div></td>';
                                     }
                                     t += '</tr>';
                                 }
@@ -142,19 +142,19 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     } }
                 ],
                 style: [
-                    { title:'Bold', html:'bold', class:'manju-bold', cmd: 'bold' },
-                    { title:'Italic', html:'italic', class:'manju-italic', cmd: 'italic' },
-                    { title:'Underline', html:'underline', class:'manju-underline', cmd: 'underline' },
-                    { title:'Strikethrough', html:'strike', class:'', cmd: 'strikethrough' }
+                    { title:'Bold', html:'<i class="icon-bold"></i>', class:'manju-bold', cmd: 'bold' },
+                    { title:'Italic', html:'<i class="icon-italic"></i>', class:'manju-italic', cmd: 'italic' },
+                    { title:'Underline', html:'<i class="icon-underline"></i>', class:'manju-underline', cmd: 'underline' },
+                    { title:'Strikethrough', html:'<i class="icon-strikethrough"></i>', class:'', cmd: 'strikethrough' }
                 ],
                 alignment: [
-                    { title:'left', html:'alignleft', class:'manju-bold', cmd: 'justifyleft' },
-                    { title:'center', html:'aligncenter', class:'manju-bold', cmd: 'justifycenter' },
-                    { title:'right', html:'alignright', class:'manju-bold', cmd: 'justifyright' },
-                    { title:'justify', html:'alignadjust', class:'manju-bold', cmd: 'justifyfull' },
+                    { title:'left', html:'<i class="icon-align-left"></i>', class:'manju-bold', cmd: 'justifyleft' },
+                    { title:'center', html:'<i class="icon-align-center"></i>', class:'manju-bold', cmd: 'justifycenter' },
+                    { title:'right', html:'<i class="icon-align-right"></i>', class:'manju-bold', cmd: 'justifyright' },
+                    { title:'justify', html:'<i class="icon-align-justify"></i>', class:'manju-bold', cmd: 'justifyfull' },
                 ],
                 linking: [
-                    { title:'Hyperlink', html:'link', class:'manju-link', cmd: {
+                    { title:'Hyperlink', html:'<i class="icon-link"></i>', class:'manju-link', cmd: {
                         command: 'createlink',
                         callback: function() {
                             var url = prompt('Enter URL (leave blank to unlink)', '');
@@ -170,7 +170,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                             }
                         }
                     } },
-                    { title: 'Insert image', html:'image', class:'manju-image', cmd: function()
+                    { title: 'Insert image', html:'<i class="icon-picture"></i>', class:'manju-image', cmd: function()
                         {
                             var url = prompt('Enter image URL', '');
 
@@ -182,24 +182,24 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                     }
                 ],
                 lists: [
-                    { title:'Unordered list', html:'list', class:'manju-list', cmd: 'insertUnorderedList' },
-                    { title:'Ordered list', html:'list', class:'manju-list', cmd: 'insertOrderedList' }
+                    { title:'Unordered list', html:'<i class="icon-list-ul"></i>', class:'manju-list', cmd: 'insertUnorderedList' },
+                    { title:'Ordered list', html:'<i class="icon-list-ol"></i>', class:'manju-list', cmd: 'insertOrderedList' }
                 ],
                 indentation: [
-                    { title:'Outdent', html:'left', class:'manju-list', cmd: 'outdent' },
-                    { title:'Indent', html:'right', class:'manju-list', cmd: 'indent' }
+                    { title:'Outdent', html:'<i class="icon-indent-left"></i>', class:'manju-list', cmd: 'outdent' },
+                    { title:'Indent', html:'<i class="icon-indent-right"></i>', class:'manju-list', cmd: 'indent' }
                 ],
                 clipboard: [
-                    { title:'Cut', html:'cut', class:'manju-cut', cmd: 'cut' },
-                    { title:'Copy', html:'copy', class:'manju-copy', cmd: 'copy' },
-                    { title:'Paste', html:'file', class:'manju-paste', cmd: 'paste' }
+                    { title:'Cut', html:'<i class="icon-cut"></i>', class:'manju-cut', cmd: 'cut' },
+                    { title:'Copy', html:'<i class="icon-copy"></i>', class:'manju-copy', cmd: 'copy' },
+                    { title:'Paste', html:'<i class="icon-paste"></i>', class:'manju-paste', cmd: 'paste' }
                 ],
                 history: [
-                    { title:'Undo', html:'undo', class:'manju-undo', cmd: 'undo' },
-                    { title:'redo', html:'<span class="flip">undo</span>', class:'manju-redo', cmd: 'redo' }
+                    { title:'Undo', html:'<i class="icon-undo"></i>', class:'manju-undo', cmd: 'undo' },
+                    { title:'redo', html:'<i class="icon-repeat"></i>', class:'manju-redo', cmd: 'redo' }
                 ],
                 misc: [
-                    { title:'Source', html:'code', class:'manju-viewsource', cmd: function() { this.sourceToggle(); } }
+                    { title:'Source', html:'<i class="icon-code"></i>', class:'manju-viewsource', cmd: function() { this.sourceToggle(); } }
                 ]
             }
         },
