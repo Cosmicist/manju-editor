@@ -482,11 +482,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         this.cmd = _cmd;
 
         /**
-         * Syncs textarea with editable area
+         * Syncs textarea contents with editable area's if in design mode
          */
         function _syncTextarea()
         {
-            $ta.val( $.trim( $e.html() ) );
+            if (_getCurrentMode() == 'design') {
+                $ta.val( $.trim( $e.html() ) );
+            }
         }
         this.syncTextarea = _syncTextarea;
 
